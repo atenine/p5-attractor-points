@@ -8,6 +8,14 @@ function setup(){
 
 dots = [];
 
+function touchStarted(){
+    return false;
+}
+
+function touchMoved(){
+    return false;
+}
+
 for (i = 0; i < 50; i++){
     dots.push(
         {
@@ -27,6 +35,10 @@ for (i = 0; i < 50; i++){
             }
         }
     )
+}
+
+function touchStarted(e) {
+    return(e);
 }
 
 function getDistance(a, b) {
@@ -70,7 +82,6 @@ function draw() {
 
     dots.forEach(e => {
         e.iterate();
-        console.log("iterated");
         stroke(0);
         ellipse(e.x, e.y, 5, 5);
     });

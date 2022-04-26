@@ -1,5 +1,6 @@
 w = window.innerWidth;
 h = window.innerHeight;
+shakenFlag = false;
 
 function setup(){
     createCanvas(w, h);
@@ -14,6 +15,10 @@ function touchStarted(){
 
 function touchMoved(){
     return false;
+}
+
+function isShaken(){
+    shakenFlag = !shakenFlag;
 }
 
 for (i = 0; i < 50; i++){
@@ -37,10 +42,6 @@ for (i = 0; i < 50; i++){
     )
 }
 
-function touchStarted(e) {
-    return(e);
-}
-
 function getDistance(a, b) {
     dx = a.x - b.x;
     dy = a.y - b.y;
@@ -60,7 +61,7 @@ function draw() {
     dots.forEach(e => {
         dots.forEach(f => {
 
-            if(getDistance(e, f) < 150){
+            if(getDistance(e, f) < 150 && !shakenFlag){
                 e.dx -= (f.x - e.x) * 100;
                 e.dy -= (f.y - e.y) * 100;
                 pline(e, f);
